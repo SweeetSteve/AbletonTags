@@ -1,8 +1,9 @@
 """
+Author: Stephen Shea
+Date: 12/09/23
 
+Contains methods that edit the embedded id3v2 data.
 """
-#import macos_tags
-#from macos_tags import Tag, Color
 import re
 from mutagen.aiff import AIFF
 import formatDataForSamples as sform
@@ -19,27 +20,24 @@ from mutagen.id3 import TKEY
 
 
 
-
+# GET Methods
 def get_bpm(sample_path):
     """
         Returns the embedded BPM value.
     :param sample_path:
-    :return: String
+    :return: String - The BPM of the sample
     """
     try:
         sample = AIFF(sample_path)
         bpm = sample.pprint()
         if (bpm.find('TBPM=') != -1):
             bpm = str(sample.get('TBPM'))
-            #bpm = bpm[bpm.find('TBPM='):].rstrip().lstrip()
-            #bpm = bpm[:bpm.find('\n')]
-            #bpm = bpm.replace('TBPM=','')
         else:
             bpm = 'NULL'
-
         return bpm
     except:
         print('error')
+        
 def get_genre(sample_path):
     """
         Returns the genre that is embedded in the sample file.
@@ -49,23 +47,22 @@ def get_genre(sample_path):
     try:
         sample = AIFF(sample_path)
         genre = sample.pprint()
-        #print(genre)
         if (genre.find('TCON=') != -1):
             genre = genre[genre.find('TCON='):].rstrip().lstrip()
             genre = genre[:genre.find('\n')]
             genre = genre.replace('TCON=', '')
             genre = genre.replace(' / ', ',')
-            #print(genre)
         else:
             genre = 'NULL'
         return genre
     except:
         print('error')
+        
 def get_audio_key(sample_path):
     """
         Returns the audio key that is embedded in the sample file.
     :param sample_path:
-    :return:
+    :return: String - The key of the sample
     """
     try:
         sample = AIFF(sample_path)
@@ -79,11 +76,12 @@ def get_audio_key(sample_path):
         return key
     except:
         print('error')
+        
 def get_artist(sample_path):
     """
-
+        Returns the artist name that is embedded in the file.
     :param sample_path:
-    :return:
+    :return: String - The artist of the sample
     """
     try:
         sample = AIFF(sample_path)
@@ -102,9 +100,9 @@ def get_artist(sample_path):
 
 def get_album(sample_path):
     """
-
-    :param sample_path:
-    :return:
+        Returns the album name that is embedded in the file.
+    :param sample_path: String
+    :return: String
     """
     try:
         sample = AIFF(sample_path)
@@ -119,9 +117,9 @@ def get_album(sample_path):
 
 def get_description(sample_path):
     """
-
+        Returns the description that is embedded in the file.
     :param sample_path:
-    :return:
+    :return: String
     """
     sample = AIFF(sample_path)
     description = sample.pprint()
@@ -133,7 +131,7 @@ def get_description(sample_path):
 
 def get_creator(sample_path):
     """
-
+        Returns the creator of the sample that is embedded in the file.
     :param sample_path: String
     :return: String
     """
@@ -146,18 +144,24 @@ def get_creator(sample_path):
     return creator
 
 def get_pprint(sample_path):
+    """
+        Returns all the embedded properties.
+    :param
+        None
+    :return: String
+    """
     return AIFF(sample_path).pprint()
 
 
 
 
-
+# SET Methods
 def set_artwork(sample_path,art_path):
     """
         Embeds the given art into the given sample
-    :param sample_path: String
-    :param art_path: String
-    :return:
+    :param sample_path: String - POSIX Path to sample file
+    :param art_path: String - POSIX path to artwork
+    :return: None
     """
     try:
         sample = AIFF(sample_path)
@@ -174,10 +178,10 @@ def set_artwork(sample_path,art_path):
 
 def set_comment(sample_path, comment):
     """
-
-    :param sample_path:
-    :param description:
-    :return:
+        Embeds the given comment into the given sample
+    :param sample_path: String - POSIX Path to sample file
+    :param description: String
+    :return: None
     """
     sample = AIFF(sample_path)
     sample['COMM'] = COMM(text=comment)
@@ -185,10 +189,10 @@ def set_comment(sample_path, comment):
 
 def set_description(sample_path, description):
     """
-
-    :param sample_path:
-    :param description:
-    :return:
+        Embeds the given description into the given sample
+    :param sample_path: String - POSIX Path to sample file
+    :param description: String
+    :return: None
     """
     sample = AIFF(sample_path)
     sample['TDES'] = TDES(text=description)
@@ -196,9 +200,9 @@ def set_description(sample_path, description):
 
 def set_key(sample_path, key):
     """
-
-    :param sample_path:
-    :param key:
+        Embeds the given key into the given sample
+    :param sample_path: String - POSIX Path to sample file
+    :param key: String
     :return: None
     """
     sample = AIFF(sample_path)
@@ -223,10 +227,16 @@ def set_song_key(sample_path):
     song['TKEY'] = TKEY(text=key)
     song.save()
 
+
+
+
+# CHECK Methods
 def is_bpm_embedded(sample_path):
     """
         Checks if a sample has the bpm value embedded.
-    :param sample_path:
+        1 = bpm is embedded
+        0 = bpm is not embedded
+    :param sample_path: String - POSIX Path to sample file
     :return: int
     """
     try:
@@ -238,10 +248,13 @@ def is_bpm_embedded(sample_path):
             return 0
     except:
         print('error')
+        
 def is_genre_embedded(sample_path):
     """
         Checks if a sample has the genre embedded.
-    :param sample_path:
+        1 = genre is embedded
+        0 = genre is not embedded
+    :param sample_path: String - POSIX Path to sample file
     :return: int
     """
     try:
@@ -253,11 +266,14 @@ def is_genre_embedded(sample_path):
             return 0
     except:
         print('error')
+        
 def is_audio_key_embedded(sample_path):
     """
-
-    :param sample_path:
-    :return:
+        Checks if a sample has the key embedded
+        1 = key is embedded
+        0 = key is not embedded
+    :param sample_path: String - POSIX Path to sample file
+    :return: int
     """
     try:
         sample = AIFF(sample_path)
@@ -268,10 +284,13 @@ def is_audio_key_embedded(sample_path):
             return 0
     except:
         print('error')
+        
 def is_artist_embedded(sample_path):
     """
         Checks if a sample has the artists embedded.
-    :param sample_path:
+        1 = artist is embedded
+        0 = artist is not embedded
+    :param sample_path: String - POSIX Path to sample file
     :return: int
     """
     try:
@@ -283,10 +302,13 @@ def is_artist_embedded(sample_path):
             return 0
     except:
         print('error')
+        
 def is_album_embedded(sample_path):
     """
         Checks if a sample has the album name embedded.
-    :param sample_path:
+        1 = album is embedded
+        0 = album is not embedded
+    :param sample_path: String - POSIX Path to sample file
     :return: int
     """
     try:
@@ -298,10 +320,31 @@ def is_album_embedded(sample_path):
             return 0
     except:
         print('error')
+        
+def is_art_embedded(sample_path):
+    """
+        Checks if the sample pack art has been embedded.
+        1 = art is embedded
+        0 = art is not embedded
+    :param sample_path: String - POSIX Path to sample file
+    :return: int
+    """
+    try:
+        sample = AIFF(sample_path)
+    except:
+        return 0
+    art = sample.pprint()
+    if (art.find('APIC=') != -1):
+        return 1
+    else:
+        return 0
+    
 def are_tags_embedded(sample_path):
     """
         Checks if a sample has the tags embedded.
-    :param sample_path:
+        1 = tags are embedded
+        0 = tags are not embedded
+    :param sample_path: String - POSIX Path to sample file
     :return: int
     """
     try:
@@ -319,25 +362,3 @@ def are_tags_embedded(sample_path):
             return 0
     except:
         print('error')
-def is_art_embedded(sample_path):
-    """
-        Checks if the sample pack art has been embedded.
-    :param sample_path:
-    :return:
-    """
-    try:
-        sample = AIFF(sample_path)
-    except:
-        return 0
-    art = sample.pprint()
-    if (art.find('APIC=') != -1):
-        return 1
-    else:
-        return 0
-
-
-
-
-
-#sample_path = '/Users/Shared/Music Production/Ableton/User Library/Sample Packs/Artists/Bigwhite Beatz/PRO MIXED KIT #1/BWB-PRO 808-Mix1.3/BWB PRO 808  (1).aiff'
-#get_genre(sample_path)

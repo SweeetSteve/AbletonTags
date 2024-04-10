@@ -2,7 +2,11 @@
 Author: Stephen Shea
 Date: 01/12/24
 
-
+This class creates an object for a sample.
+Each object contains:
+1. The path to the associated xmp file. (The xmp file will be in the same folder as the sample.)
+2. A list of tags associated with the sample.
+3. The colors associated with the sample.
 """
 import sampleClass as Sample
 class AbletonTags(Sample):

@@ -1,7 +1,8 @@
 """
 Author: Stephen Shea
 Date: 01/12/24
-    Creates an object for an audio sample.
+
+Creates an object for an audio sample.
 """
 
 
