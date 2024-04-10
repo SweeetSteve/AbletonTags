@@ -3,7 +3,7 @@
 """
 import re
 import os
-import sampleMethods as samp
+import Methods.sampleMethods as samp
 import addAbletonTag as ab_tag
 
 # TO FILTER FOR SPECIFIC FILES, ENTER THE APPROPRIATE DATA IN THE FOLLOWING LISTS:

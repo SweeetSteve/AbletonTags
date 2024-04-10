@@ -1,8 +1,8 @@
 """
 
 """
-import sampleMethods as samp
-import sqlMethods as squeel
+import Methods.sampleMethods as samp
+import Methods.sqlMethods as squeel
 from mutagen.aiff import AIFF
 from Classes.sampleClass import Sample
 #import id3Methods as id3

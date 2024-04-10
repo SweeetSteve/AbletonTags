@@ -4,7 +4,7 @@
 
 import sys
 import FormatDataForPacks as form
-import sqlMethods as squeel
+import Methods.sqlMethods as squeel
 from sqlite3 import Error
 
 database = "/Users/Shared/Music Production/Sample Database Files/SamplePacks.db"

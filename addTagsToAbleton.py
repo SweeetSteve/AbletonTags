@@ -1,7 +1,7 @@
 """
 
 """
-import sqlMethods as squeel
+import Methods.sqlMethods as squeel
 import sqlite3
 
 database = "/Users/Shared/Music Production/Sample Database Files/SamplePacks.db"

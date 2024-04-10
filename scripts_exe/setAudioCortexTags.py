@@ -2,7 +2,7 @@
 
 """
 import os
-import sqlMethods as squeel
+import Methods.sqlMethods as squeel
 from Methods import id3Methods as id
 import addAbletonTag as ab_tag
 import re

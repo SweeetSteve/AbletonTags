@@ -5,11 +5,11 @@ Date: 12/08/23
 Adds a sample data entry to the Ableton Samples Database
 """
 
-import createXMP as c_xmp
-import mainXMP_NO as xmp_no
+import Methods.createXMP as c_xmp
+import Methods.mainXMP_NO as xmp_no
 import re
-import sqlMethods as squeel
-import sampleMethods as samp
+import Methods.sqlMethods as squeel
+import Methods.sampleMethods as samp
 
 database = "/Users/Shared/Music Production/Sample Database Files/Ableton Samples.db"
 conn = squeel.create_connection(database)

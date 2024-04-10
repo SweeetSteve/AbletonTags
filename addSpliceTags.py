@@ -3,9 +3,9 @@
 """
 import sqlite3
 from sqlite3 import Error
-import createXMP as c_xmp
-import mainXMP_NO as xmp_no
-import mainXMP_YES as xmp_yes
+import Methods.createXMP as c_xmp
+import Methods.mainXMP_NO as xmp_no
+import Methods.mainXMP_YES as xmp_yes
 
 
 

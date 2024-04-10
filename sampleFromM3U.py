@@ -1,8 +1,8 @@
 import os
 import sys
-import createXMP as c_xmp
-import mainXMP_NO as xmp_no
-import mainXMP_YES as xmp_yes
+import Methods.createXMP as c_xmp
+import Methods.mainXMP_NO as xmp_no
+import Methods.mainXMP_YES as xmp_yes
 
 def add_ableton_tag(keyword, sample_paths):
     count = 0

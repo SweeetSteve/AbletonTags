@@ -4,7 +4,7 @@ Date: 12/12/23
 
 Creates an empty sql database for the samples.
 """
-import sqlMethods as squeel
+import Methods.sqlMethods as squeel
 
 xml_string = """<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 5.6.0">
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
