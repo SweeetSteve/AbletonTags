@@ -1,13 +1,13 @@
 """
-
+Author: Stephen Shea
 """
 import sqlMethods as squeel
 
-# Press the green button in the gutter to run the script.
+
 if __name__ == '__main__':
-    #keywords = ['Initiate|🎧']
-    #sample_name = '121_A_DeepBass_01_SP.aiff'
-    xml_string = """<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 5.6.0">
+   #keywords = ['Initiate|🎧']
+   #sample_name = '121_A_DeepBass_01_SP.aiff'
+   xml_string = """<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="XMP Core 5.6.0">
    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
       <rdf:Description rdf:about=""
             xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -58,10 +58,7 @@ if __name__ == '__main__':
 </x:xmpmeta>
 """
 
-
-
-
-    sql_create_samples_table = """CREATE TABLE IF NOT EXISTS samples (
+   sql_create_samples_table = """CREATE TABLE IF NOT EXISTS samples (
                                                 id integer PRIMARY KEY AUTOINCREMENT,
                                                 sample_name TEXT NOT NULL,
                                                 sample_path TEXT NOT NULL,
@@ -87,19 +84,18 @@ if __name__ == '__main__':
                                                 Splice TEXT,
                                                 places TEXT
                                             );"""
+   
+    #Set database location
+   
+   # Location of sql database
+   database = "/Users/Shared/Music Production/Sample Database Files/Ableton Samples.db"
 
-    database = "/Users/Shared/Music Production/Sample Database Files/Ableton Samples.db"
+   # create a database connection
+   conn = squeel.create_connection(database)
 
-    # create a database connection
-    conn = squeel.create_connection(database)
-
-    # create tables
-    if conn is not None:
-        # create samples table
-        squeel.create_table(conn, sql_create_samples_table)
-    else:
-        print("Error! cannot create the database connection.")
-    #print(c_xml.read_xmp('/Users/Shared/Music Production/Ableton/User Library/Sample Packs/1. Noiiz/5 A.M. House/Bass/Ableton Folder Info/dc66a3fa-0fe1-5352-91cf-3ec237e9ee90.xmp'))
-
-        #print('----------')
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+   # create tables
+   if conn is not None:
+      # create samples table
+      squeel.create_table(conn, sql_create_samples_table)
+   else:
+      print("Error! cannot create the database connection.")
