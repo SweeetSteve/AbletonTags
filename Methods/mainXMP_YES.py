@@ -1,8 +1,8 @@
 """
 
 """
-import createXMP as c_xmp
-import parseXMP as p_xmp
+import Methods.createXMP as c_xmp
+import Methods.parseXMP as p_xmp
 import re
 
 def is_sample_exists(xmp_string, sample_name):
@@ -55,5 +55,3 @@ def main(sample_path, new_keyword):
         c_xmp.write_xmp(xmp_path, new_xmp_string)
     else:
         print('✅')
-
-    #return xmp_top

@@ -1,10 +1,10 @@
 """
 
 """
-import createXMP as c_xmp
-import parseXMP as p_xmp
-import mainXMP_NO as xmp_no
-import mainXMP_YES as xmp_yes
+import Methods.createXMP as c_xmp
+import Methods.parseXMP as p_xmp
+import Methods.mainXMP_NO as xmp_no
+import Methods.mainXMP_YES as xmp_yes
 
 def get_sample_name_from_sample_path(sample_path):
     """

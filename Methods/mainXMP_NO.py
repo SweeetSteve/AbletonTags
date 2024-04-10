@@ -1,7 +1,7 @@
 """
 
 """
-import createXMP as c_xmp
+import Methods.createXMP as c_xmp
 
 
 def main(sample_path, new_keyword):
@@ -10,5 +10,3 @@ def main(sample_path, new_keyword):
 
     xmp_string = c_xmp.create_xmp_string_from_scratch(sample_name, new_keyword)
     c_xmp.write_xmp(xmp_path, xmp_string)
-    #print(xmp_string)
-

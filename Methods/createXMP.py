@@ -3,7 +3,7 @@
 """
 import os
 import re
-import parseXMP as parse
+import Methods.parseXMP as parse
 
 def ensure_xmp_path(xmp_path):
     """
@@ -19,7 +19,6 @@ def ensure_xmp_path(xmp_path):
     else:
         create_ableton_folder(xmp_path[:xmp_path.rfind('Ableton Folder Info')])
         return 'XMP-NO'
-
 
 def create_xml_string(sample_name):
     """
@@ -96,9 +95,6 @@ def create_sample_entry_color(sample_name, keywords, colors):
     sample_entry = '               <rdf:li rdf:parseType="Resource">\n' + '                  <ablFR:filePath>ß</ablFR:filePath>\n                  <ablFR:colors>\n                     <rdf:Bag>\nç                     </rdf:Bag>\n                  </ablFR:colors>\n                  <ablFR:keywords>\n                     <rdf:Bag>\n˚                     </rdf:Bag>\n                  </ablFR:keywords>\n               </rdf:li>\n'
     sample_entry = sample_entry.replace('˚', keywords).replace('ß', sample_name).replace('ç', colors)
     return sample_entry
-
-#def create_new_sample_entry():
-
 
 def read_xmp(xmp_path):
     f = open(xmp_path, 'r')
