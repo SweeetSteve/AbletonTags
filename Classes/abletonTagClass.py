@@ -1,4 +1,7 @@
 """
+Author: Stephen Shea
+Date: 01/12/24
+
 
 """
 import sampleClass as Sample
