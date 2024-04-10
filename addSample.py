@@ -1,14 +1,12 @@
 """
+Author: Stephen Shea
+Date: 12/08/23
 
+Adds a sample data entry to the Ableton Samples Database
 """
-#import sys
-#import sqlite3
-from Methods import id3Methods as id3
-#import FormatDataForPacks as pform
-#import formatDataForSamples as sform
+
 import createXMP as c_xmp
 import mainXMP_NO as xmp_no
-import mainXMP_YES as xmp_yes
 import re
 import sqlMethods as squeel
 import sampleMethods as samp
